@@ -1,3 +1,18 @@
-# Affnet-v2
+# Affnet Consultants V2
 
-Modern scalable web application.
+Premium Commercial Real Estate Platform
+
+## Tech Stack
+
+- Next.js
+- Express.js
+- MongoDB
+- TailwindCSS
+
+## Features
+
+- Property Listings
+- CRM
+- Admin Dashboard
+- SEO System
+- WhatsApp Integration
