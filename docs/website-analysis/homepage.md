@@ -17,3 +17,10 @@ Problems:
 - outdated UI
 - no property search
 - poor typography
+
+## Improvements
+
+- fullscreen banner
+- advanced search
+- WhatsApp CTA
+- animated stats
