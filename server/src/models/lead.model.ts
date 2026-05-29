@@ -1,48 +1,69 @@
 import mongoose, { Schema } from "mongoose"
-// import { lowercase } from "zod"
-// import { required } from "zod/mini"
 
 const leadSchema = new Schema({
+
     name : {
         type : String,
         required : true,
         trim : true,
     },
+
     phone : {
         type : String,  
         required : true,
         trim : true,
-        unique : true,
     },
+
     email : { //since same person can show his/her interest in different properties
         type : String,
         trim : true,
         lowercase : true,
     },
+
     source : {
         type : String,
         enum : ["website", "facebook", "instagram", "google", "referral"],
         default : "website",
     },
+
     status : {
         type : String,
-        enum : ["new", "contacted", "qualified", "closed"],
+        enum : ["new", "contacted", "site_visit_scheduled", "interested", "negotiation", "closed", "lost"],
         default : "new",
     },
-    assigned_to : {
+
+    property : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : "Admin",
+        ref : "Property",
+        required : true,
     },
-    notes : [
+
+    assignedTo : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User",
+    },
+
+    notes: [
         {
-            message : String,
-            createdAt : Date,
+            message: {
+                type: String,
+                required: true,
+                trim: true,
+            },
+
+            createdAt: {
+                type: Date,
+                default: Date.now,
+            },
         },
     ],
+
 },
+
 {
     timestamps : true,
 }
+
 )
 
 export const LeadModel = mongoose.model("Leads", leadSchema);

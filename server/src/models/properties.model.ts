@@ -1,13 +1,13 @@
 import mongoose, { Schema } from "mongoose";
-// import { lowercase } from "zod";
-// import { required } from "zod/mini";
 
 const propertySchema = new Schema({
+
     title : {
         type : String,
         required : true,
         trim : true,
     },
+
     slug : {
         type : String,
         required : true,
@@ -15,58 +15,150 @@ const propertySchema = new Schema({
         trim : true,
         lowercase : true,
     },
+
     description : {
         type : String,
         required : true,
         trim : true,
     },
+
     category : {
         type : String,
         required : true,
-        enum : ["apartment", "villa", "plot", "office", "shop"],
+        enum: [
+                "office_space",
+                "coworking_space",
+                "managed_office",
+                "retail_shop",
+                "warehouse",
+                "investment_property",
+            ],
     },
-    city : {
-        type : String,
-        required : true,
-        trim : true,
+
+    location: {
+
+        city: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+
+        locality: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+
+        latitude: {
+            type: Number,
+            min: -90,
+            max: 90,
+        },
+
+        longitude: {
+            type: Number,
+            min: -180,
+            max: 180,
+        },
     },
-    locality : {
-        type : String,
-        required : true,
-        trim : true,
+
+    pricing: {
+
+        rent: {
+            type: Number,
+            required: true,
+            min: 0,
+        },
+
+        securityDeposit: {
+            type: Number,
+            default: 0,
+            min: 0,
+        },
+
+        maintenanceCharges: {
+            type: Number,
+            default: 0,
+            min: 0,
+        },
+
+        rentUnit: {
+            type: String,
+            enum: ["monthly", "yearly"],
+            default: "monthly",
+        },
     },
-    pricing : {
-        type : Number,
-        required : true,
-        min : 0,
-    },
+
     area : {
         type : Number,
         required : true,
         min : 0,
     },
+
     amenities : [
         {
         type : String,
         trim : true,
         },
     ],
-    images : [
-        {
-            type : String,
-        }
-    ],
+
+    media: {
+            images: [
+                {
+                    type: String,
+                    trim: true,
+                },
+            ],
+
+            videoUrl: {
+                type: String,
+                trim: true,
+            },
+
+            virtualTourUrl: {
+                type: String,
+                trim: true,
+            },
+
+            brochureUrl: {
+                type: String,
+                trim: true,
+            },
+
+            floorPlanUrl: {
+                type: String,
+                trim: true,
+            },
+    },
+
     status : {
         type : String,
-        required : true,
         enum : ["available", "sold", "rented"],
         default : "available",
     },
 
+    views: {
+        type: Number,
+        default: 0,
+    },
+
+    isFeatured: {
+        type: Boolean,
+        default: false,
+    },
+
+    createdBy : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User",
+        required : true,
+    }, 
+
 },
+
     {
         timestamps : true,
     }
+
 )
 
 export const PropertyModel = mongoose.model("Property", propertySchema);

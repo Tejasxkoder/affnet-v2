@@ -1,12 +1,13 @@
 import mongoose, { Schema } from "mongoose";
-import { string } from "zod";
 
 const blogSchema = new Schema({
+
     title : {
         type : String,
         required : true,
         trim : true,
     },
+
     slug : {
         type: String,
         required: true,
@@ -14,21 +15,32 @@ const blogSchema = new Schema({
         trim: true,
         lowercase: true,
     },
+
     content : {
         type : String,
         required : true,
     },
+
     tags : [
         {
             type: String,
             trim: true,
         }
     ],
+
+    category: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+
     seoData : {
+
         metatitle : {
             type : String, 
             trim : true,
         },
+
         metaDescription: {
         type: String,
         trim: true,
@@ -41,10 +53,19 @@ const blogSchema = new Schema({
             },
         ]
     },
+
+    author : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User",
+        required : true,
+    }
+
 },
+
 {
     timestamps : true,
 }
+
 )
 
-export const BlogModel = mongoose.model("Blogs", blogSchema);
+export const BlogModel = mongoose.model("Blog", blogSchema);

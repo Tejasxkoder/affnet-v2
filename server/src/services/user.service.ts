@@ -1,7 +1,7 @@
 import {z} from "zod";
 import jwt from "jsonwebtoken"
 import  bcrypt  from "bcrypt";
-import { UserModel } from "../models/users.model.js";
+import { UserModel } from "../models/user.model.js";
 import { JWT_USER_PASSWORD } from "../config/jwt.config.js"
 import { userMiddleware } from "../shared/middlewares/user.middleware.js";
 
