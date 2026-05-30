@@ -3,33 +3,33 @@ import PropertyCard from "@/components/cards/property-cards"
 
 const properties = [
   {
+    id: "1",
     image: "/images/properties/property-1.jpg",
     title: "Premium Office Space",
     location: "Mumbai, BKC",
-    description:
-      "Grade A commercial building with modern amenities and premium connectivity.",
+    description: "Grade A office building with premium connectivity.",
     area: "15,000 sq.ft",
     price: "₹12 Cr",
     tag: "For Lease",
   },
 
   {
+    id: "2",
     image: "/images/properties/property-2.jpg",
     title: "Corporate Tech Park",
     location: "Bangalore, Whitefield",
-    description:
-      "State-of-the-art IT park with excellent infrastructure and accessibility.",
+    description: "State-of-the-art IT infrastructure and accessibility.",
     area: "25,000 sq.ft",
     price: "₹18 Cr",
     tag: "For Sale",
   },
 
   {
+    id: "3",
     image: "/images/properties/property-3.jpg",
     title: "Retail Commercial Space",
     location: "Delhi, Connaught Place",
-    description:
-      "High-footfall retail property located in a premium commercial district.",
+    description: "High-footfall retail property in prime district.",
     area: "8,000 sq.ft",
     price: "₹9 Cr",
     tag: "For Lease",
@@ -70,7 +70,8 @@ export default function FeaturedProperties() {
 
           {properties.map((property) => (
             <PropertyCard
-              key={property.title}
+              id={property.id}
+              key={property.id}
               image={property.image}
               title={property.title}
               location={property.location}
