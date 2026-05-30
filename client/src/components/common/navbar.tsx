@@ -25,7 +25,7 @@ const navLinks = [
   },
   {
     name: "Advisory",
-    href: "/services",
+    href: "/advisory",
   },
   {
     name: "Investment",

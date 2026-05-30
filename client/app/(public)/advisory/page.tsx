@@ -1,0 +1,15 @@
+import AdvisoryHero from "@/sections/advisory/advisory-hero"
+import AdvisoryServices from "@/sections/advisory/advisory-services"
+import AdvisoryProcess from "@/sections/advisory/advisory-process"
+import AdvisoryCta from "@/sections/advisory/advisory-cta"
+
+export default function AdvisoryPage() {
+  return (
+    <main className="min-h-screen bg-black pb-24">
+      <AdvisoryHero />
+      <AdvisoryServices />
+      <AdvisoryProcess />
+      <AdvisoryCta />
+    </main>
+  )
+}
