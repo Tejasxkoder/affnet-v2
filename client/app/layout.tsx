@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { Inter, Hanken_Grotesk } from "next/font/google"
 import "./globals.css"
 
+import WhatsappButton from "@/components/common/whatsapp-button"
+
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
@@ -29,6 +31,7 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-background text-foreground">
         {children}
+        <WhatsappButton/>
       </body>
     </html>
   )

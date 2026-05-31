@@ -1,5 +1,5 @@
 {
-  "name": "affnet-v2",
+  "name": "server",
   "version": "1.0.0",
   "description": "Premium Commercial Real Estate Platform",
   "main": "index.js",
