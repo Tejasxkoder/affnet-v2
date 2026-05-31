@@ -5,8 +5,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-import userRouter from "./routes/user.route.js"
-app.use("/api/v1/users", userRouter)
+import adminRouter from "./routes/admin.route.js"
+app.use("/api/v1/users", adminRouter)
 
 
 export default app;

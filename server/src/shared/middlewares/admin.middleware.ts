@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken"
 import type { Request, Response, NextFunction } from "express"
-import { JWT_ADMIN_PASSWORD } from "../../config/jwt.config.js"
+import { JWT_ADMIN_PASSWORD } from "../../config/env.js"
 
 //In typescript req.userId doesn't come by default so we have to extend the type Request
 interface customRequest extends Request {
@@ -12,6 +12,7 @@ export const adminMiddleware = (
     res : Response,
     next : NextFunction
 ) => {
+    
         const authHeader = req.headers.authorization;
 
         if(!authHeader){
