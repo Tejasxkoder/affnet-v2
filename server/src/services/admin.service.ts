@@ -1,8 +1,8 @@
 import {z} from "zod";
 import jwt from "jsonwebtoken"
 import  bcrypt  from "bcrypt";
-import { AdminModel } from "../models/admin.model.js";
-import { JWT_ADMIN_PASSWORD } from "../config/jwt.config.js"
+import { UserModel } from "../models/user.model.js";
+import { JWT_ADMIN_PASSWORD } from "../config/env.js"
 import { adminMiddleware } from "../shared/middlewares/admin.middleware.js";
 
 interface signupData {
@@ -38,7 +38,7 @@ export const signupAdmin = async (
         const { firstName, lastName, email, password } = data;
 
         //check if the admin already exists
-        const existingadmin = await AdminModel.findOne({ email });
+        const existingadmin = await UserModel.findOne({ email });
         if(existingadmin){
             throw new Error("admin already exists");
         }
@@ -46,7 +46,7 @@ export const signupAdmin = async (
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10) //with 10 salt rounds
 
-        const admin = await AdminModel.create({
+        const admin = await UserModel.create({
             firstName,
             lastName,
             email,
@@ -68,13 +68,12 @@ export const signupAdmin = async (
     }
 
     //signin
-export const signinadmin = async (
+export const signinAdmin = async (
     data : signinData
-) => {
-    
+) => { 
         const { email, password } = data;
       
-        const response = await AdminModel.findOne({
+        const response = await UserModel.findOne({
             email : email
         });
         if(!response){
@@ -85,6 +84,7 @@ export const signinadmin = async (
 
         //generating a token which will be used for different REST apis
         if(passwordMatch){
+            console.log("JWT_ADMIN_PASSWORD:", JWT_ADMIN_PASSWORD);
             const token = jwt.sign({
                 id : response._id.toString()  // _id is the mongodb id(objectId) of the admin
             }, JWT_ADMIN_PASSWORD)
