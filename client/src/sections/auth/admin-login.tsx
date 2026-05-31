@@ -53,41 +53,49 @@ export default function AdminLogin() {
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setServerError("")
+ const DUMMY_ADMIN = {
+  email: "admin@affnetconsultants.com",
+  password: "Admin@1234",
+}
 
-    // Rate limiting — max 5 attempts
-    if (attempts >= MAX_ATTEMPTS) {
-      setServerError(
-        "Too many failed attempts. Please try again after some time."
-      )
-      return
-    }
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  setServerError("")
 
-    const validationErrors = validate(formData)
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors)
-      return
-    }
-
-    setLoading(true)
-    try {
-      // Admin API call yahan aayegi
-      await new Promise((r) => setTimeout(r, 1200))
-      // router.push("/admin/dashboard") — baad mein
-    } catch {
-      setAttempts((prev) => prev + 1)
-      const remaining = MAX_ATTEMPTS - attempts - 1
-      setServerError(
-        remaining > 0
-          ? `Invalid credentials. ${remaining} attempt${remaining === 1 ? "" : "s"} remaining.`
-          : "Too many failed attempts. Please try again later."
-      )
-    } finally {
-      setLoading(false)
-    }
+  if (attempts >= MAX_ATTEMPTS) {
+    setServerError("Too many failed attempts. Please try again after some time.")
+    return
   }
+
+  const validationErrors = validate(formData)
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors)
+    return
+  }
+
+  setLoading(true)
+
+  await new Promise((r) => setTimeout(r, 800))
+
+  // DUMMY CHECK — backend aane par replace karna
+  if (
+    formData.email === DUMMY_ADMIN.email &&
+    formData.password === DUMMY_ADMIN.password
+  ) {
+    // Success — dashboard pe redirect
+    window.location.href = "/admin/dashboard"
+  } else {
+    setAttempts((prev) => prev + 1)
+    const remaining = MAX_ATTEMPTS - attempts - 1
+    setServerError(
+      remaining > 0
+        ? `Invalid credentials. ${remaining} attempt${remaining === 1 ? "" : "s"} remaining.`
+        : "Too many failed attempts. Please try again later."
+    )
+  }
+
+  setLoading(false)
+}
 
   const isLocked = attempts >= MAX_ATTEMPTS
 
