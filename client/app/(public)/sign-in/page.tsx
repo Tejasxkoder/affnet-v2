@@ -1,18 +1,25 @@
+/**
+ * @file sign-in/page.tsx
+ * @description User authentication page with premium design
+ * @tags page, auth, authentication
+ */
+
+import { COLORS } from "@/constants/colors"
 import UserSignIn from "@/sections/auth/user-sign-in"
 
+// @tag: Page Component
 export default function SignInPage() {
   return (
-    <main className="flex min-h-screen bg-black">
-
-      {/* LEFT — FORM */}
+    <main className={`flex min-h-screen ${COLORS.bg.primary}`}>
+      {/* @tag: Form Section - Left Column */}
       <div className="flex flex-1 items-center justify-center px-6 py-16">
         <UserSignIn />
       </div>
 
-      {/* RIGHT — VISUAL (desktop only) */}
-      <div className="hidden lg:flex lg:flex-1 lg:flex-col lg:items-center lg:justify-center relative overflow-hidden bg-[#050505] border-l border-white/5">
+      {/* @tag: Visual Section - Right Column (Desktop Only) */}
+      <div className={`hidden lg:flex lg:flex-1 lg:flex-col lg:items-center lg:justify-center relative overflow-hidden ${COLORS.bg.secondary} ${COLORS.border.secondary}`}>
 
-        {/* BG */}
+        {/* @tag: Background Image with Overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{
@@ -22,20 +29,26 @@ export default function SignInPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
 
-        {/* CONTENT */}
+        {/* @tag: Content Container */}
         <div className="relative z-10 max-w-sm px-8 text-center">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C9A14A]/10 border border-[#C9A14A]/20">
-            <div className="h-8 w-8 rounded-lg bg-[#C9A14A]" />
+          
+          {/* @tag: Accent Logo Badge */}
+          <div className={`mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl ${COLORS.accentBg.light} border ${COLORS.border.accentLight}`}>
+            <div style={{ backgroundColor: COLORS.accent.primary }} className="h-8 w-8 rounded-lg" />
           </div>
-          <h2 className="text-3xl font-bold text-white">
+
+          {/* @tag: Heading */}
+          <h2 className={`text-3xl font-bold ${COLORS.text.primary}`}>
             Premium Commercial Real Estate
           </h2>
-          <p className="mt-4 text-sm leading-7 text-[#71717A]">
+
+          {/* @tag: Description */}
+          <p className={`mt-4 text-sm leading-7 ${COLORS.text.tertiary}`}>
             Access your dashboard to manage property inquiries, track
             listings, and stay updated on market opportunities.
           </p>
 
-          {/* STATS */}
+          {/* @tag: Statistics Grid */}
           <div className="mt-8 grid grid-cols-2 gap-4">
             {[
               { value: "500+", label: "Properties" },
@@ -45,12 +58,12 @@ export default function SignInPage() {
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-xl border border-white/10 bg-black/40 p-4 backdrop-blur-sm"
+                className={`rounded-xl ${COLORS.border.primary} ${COLORS.backdrop.dark} p-4 backdrop-blur-sm`}
               >
-                <p className="text-lg font-bold text-[#C9A14A]">
+                <p className="text-lg font-bold" style={{ color: COLORS.accent.primary }}>
                   {stat.value}
                 </p>
-                <p className="mt-0.5 text-xs text-[#71717A]">{stat.label}</p>
+                <p className={`mt-0.5 text-xs ${COLORS.text.tertiary}`}>{stat.label}</p>
               </div>
             ))}
           </div>

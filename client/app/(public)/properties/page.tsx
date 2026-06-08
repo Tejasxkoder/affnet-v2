@@ -1,10 +1,12 @@
 import PropertiesFilters from "@/sections/properties/property-filters"
 import PropertiesGrid from "@/sections/properties/properties-grid"
 import PropertiesHeader from "@/sections/properties/properties-header"
+import Navbar from "@/components/common/navbar"
 
 export default function PropertiesPage() {
   return (
     <main className="min-h-screen bg-black">
+      <Navbar/>
 
       <PropertiesHeader />
 

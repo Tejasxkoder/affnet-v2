@@ -38,59 +38,63 @@ export default function PropertyCard({
     >
 
       {/* IMAGE */}
-      <div className="relative h-[200px] sm:h-[220px] overflow-hidden bg-black">
+      <div className="relative h-[280px] overflow-hidden bg-black">
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.03]"
           style={{ backgroundImage: `url(${image})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
         {/* TAG */}
-        <div className={`absolute right-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide backdrop-blur-md ${
+        <div className={`absolute right-4 top-4 rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-widest backdrop-blur-md ${
           tag === "For Lease"
-            ? "border border-emerald-500/30 bg-emerald-500/20 text-emerald-400"
-            : "border border-[#C9A14A]/30 bg-[#C9A14A]/20 text-[#C9A14A]"
+            ? "border border-emerald-500/40 bg-emerald-500/20 text-emerald-400"
+            : "border border-[#C9A14A]/40 bg-[#C9A14A]/20 text-[#C9A14A]"
         }`}>
           {tag}
         </div>
       </div>
 
       {/* CONTENT */}
-      <div className="flex flex-1 flex-col p-4 sm:p-5">
+      <div className="flex flex-1 flex-col p-6">
 
         {/* LOCATION */}
-        <div className="flex items-center gap-1.5 text-xs text-[#71717A]">
-          <MapPin className="h-3.5 w-3.5 text-[#C9A14A]" />
-          <span>{location}</span>
+        <div className="flex items-center gap-2 text-sm text-[#71717A]">
+          <MapPin className="h-4 w-4 shrink-0 text-[#C9A14A]" />
+          <span className="truncate">{location}</span>
         </div>
 
         {/* TITLE */}
-        <h3 className="mt-2 text-base sm:text-lg font-semibold leading-tight text-white transition-colors duration-300 group-hover:text-[#C9A14A]">
+        <h3 className="mt-3 text-xl font-bold leading-snug text-white transition-colors duration-300 group-hover:text-[#C9A14A]">
           {title}
         </h3>
 
         {/* DESCRIPTION */}
-        <p className="mt-2 text-xs sm:text-sm leading-6 text-[#71717A] line-clamp-2">
+        <p className="mt-2 text-sm leading-7 text-[#71717A] line-clamp-2">
           {description}
         </p>
 
         {/* STATS + BUTTON */}
-        <div className="mt-4 border-t border-white/5 pt-4">
+        <div className="mt-6 border-t border-white/5 pt-5">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[10px] uppercase tracking-wide text-[#71717A]">Area</p>
-              <p className="mt-0.5 text-sm font-semibold text-white">{area}</p>
+              <p className="text-[11px] uppercase tracking-widest text-[#71717A]">
+                Area
+              </p>
+              <p className="mt-1 text-base font-bold text-white">{area}</p>
             </div>
             <div className="text-right">
-              <p className="text-[10px] uppercase tracking-wide text-[#71717A]">Price</p>
-              <p className="mt-0.5 text-sm font-semibold text-[#C9A14A]">{price}</p>
+              <p className="text-[11px] uppercase tracking-widest text-[#71717A]">
+                Price
+              </p>
+              <p className="mt-1 text-base font-bold text-[#C9A14A]">{price}</p>
             </div>
           </div>
 
           <Link href={`/properties/${id}`}>
             <motion.button
               whileTap={{ scale: 0.97 }}
-              className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#C9A14A] text-sm font-semibold text-black transition-colors hover:bg-[#d6ae57]"
+              className="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#C9A14A] text-sm font-semibold text-black transition-colors hover:bg-[#d6ae57]"
             >
               View Details
               <ArrowUpRight className="h-4 w-4" />
